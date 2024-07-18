@@ -1,8 +1,10 @@
-import db from "@repo/db/client";
+import prisma from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
+import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
+export const AUTH_CONFIG = {
     providers: [
       CredentialsProvider({
           name: 'Credentials',
@@ -10,11 +12,9 @@ export const authOptions = {
             phone: { label: "Phone number", type: "text", placeholder: "1231231231", required: true },
             password: { label: "Password", type: "password", required: true }
           },
-          // TODO: User credentials type from next-aut
           async authorize(credentials: any) {
-            // Do zod validation, OTP validation here
             const hashedPassword = await bcrypt.hash(credentials.password, 10);
-            const existingUser = await db.user.findFirst({
+            const existingUser = await prisma.user.findFirst({
                 where: {
                     number: credentials.phone
                 }
@@ -33,7 +33,7 @@ export const authOptions = {
             }
 
             try {
-                const user = await db.user.create({
+                const user = await prisma.user.create({
                     data: {
                         number: credentials.phone,
                         password: hashedPassword
@@ -51,7 +51,15 @@ export const authOptions = {
 
             return null
           },
-        })
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID || "",
+            clientSecret: process.env.GOOGLE_SECRET || ""
+          }),
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID || "",
+            clientSecret: process.env.GITHUB_SECRET || ""
+          })
     ],
     secret: process.env.JWT_SECRET || "secret",
     callbacks: {
