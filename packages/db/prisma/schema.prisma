@@ -8,33 +8,47 @@ datasource db {
 }
 
 model User {
-  id                  Int      @id @default(autoincrement())
-  email               String?  @unique
+  id                  Int                   @id @default(autoincrement())
+  email               String?               @unique
   name                String? 
-  number              String   @unique
+  number              String                @unique
   password            String
   Balance             Balance[]
   onRampTransactions  OnRampTransaction[]  
+  SentTransaction     P2PTransaction[]       @relation(name: "fromUserRelation")
+  RecievedTransaction P2PTransaction[]       @relation(name: "toUserRelation")
 }
 
 model Balance {
   id           Int      @id @default(autoincrement())
   userId       Int      @unique
-  balance      Int      @default(0)
+  amount       Int      @default(0)
   locked       Int 
   user         User     @relation(fields: [userId], references: [id])
 }
 
 model OnRampTransaction {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  status       OnRampStatus
-  amount       Int
-  provider     String
-  token        String   @unique
-  startTime    DateTime
-  user         User     @relation(fields: [userId], references: [id])
+  id           Int            @id @default(autoincrement())
+  userId       Int  
+  status       OnRampStatus 
+  amount       Int  
+  provider     String 
+  token        String          @unique
+  startTime    DateTime 
+  user         User            @relation(fields: [userId], references: [id])
 }
+
+model P2PTransaction {
+  id            Int          @id @default(autoincrement())
+  status        OnRampStatus
+  amount        Int
+  startTime     DateTime
+  fromUserId    Int
+  toUserId      Int
+  fromuser      User         @relation(name: "fromUserRelation",fields: [fromUserId], references: [id])
+  toUser        User         @relation(name: "toUserRelation",fields: [toUserId], references: [id])
+}
+
 
 enum OnRampStatus {
   Success
