@@ -2,13 +2,14 @@
 
 import { ReactNode } from "react";
 
-export const Button = ({ onClick, children, disabled }: 
+export const Button = ({ onClick, children, disabled, colour }: 
   {onClick: () => void, 
   children: ReactNode, 
-  disabled: boolean
+  disabled: boolean,
+  colour?: string
 }) => {
   return (
-    <button onClick={onClick} type="button" disabled={disabled} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+    <button onClick={onClick} disabled={disabled} type="button" className={`text-white font-medium rounded-full  ${colour} outline outline-1 text-bold px-6 py-3 text-center mb-2`}>
       {children}
     </button>
 
