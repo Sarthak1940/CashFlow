@@ -31,6 +31,14 @@ export const AppBarClient = () => {
     </Appbar>
   </div>
   }
+
+  if (pathname === "/api/auth/signin") {
+    return <div>
+    <Appbar>
+        <Button onClick={() => {router.push("/api/auth/signup")}} disabled={false} colour="bg-[#855bfb29] text-[#7132f5]">Create Account</Button>
+    </Appbar>
+  </div>
+  }
   
   if (pathname === "/") {
     return <div>
