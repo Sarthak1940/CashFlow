@@ -6,7 +6,7 @@ import { AUTH_CONFIG } from "../../lib/auth";
 
 async function getP2PTransaction() {
   const session = await getServerSession(AUTH_CONFIG)
-  const loggedInUserId = Number(session?.user?.id)
+  const loggedInUserId = session?.user?.id
   const txns = await prisma.p2PTransaction.findMany({
       where: {
          fromUserId: loggedInUserId

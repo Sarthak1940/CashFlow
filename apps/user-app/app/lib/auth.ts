@@ -12,6 +12,10 @@ export const AUTH_CONFIG = {
             password: { label: "Password", type: "password", required: true }
           },
           async authorize(credentials: any) {
+            if (!credentials.phone || !credentials.password) {
+                return null;
+            }
+            
             const existingUser = await prisma.user.findFirst({
                 where: {
                     number: credentials.phone

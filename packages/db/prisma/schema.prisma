@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id                  Int                   @id @default(autoincrement())
+  id                  String                @id @default(cuid())
   email               String?               @unique
   name                String? 
   number              String                @unique
@@ -21,7 +21,7 @@ model User {
 
 model Balance {
   id           Int      @id @default(autoincrement())
-  userId       Int      @unique
+  userId       String      @unique
   amount       Int      @default(0)
   locked       Int 
   user         User     @relation(fields: [userId], references: [id])
@@ -29,7 +29,7 @@ model Balance {
 
 model OnRampTransaction {
   id           Int            @id @default(autoincrement())
-  userId       Int  
+  userId       String  
   status       OnRampStatus 
   amount       Int  
   provider     String 
@@ -43,8 +43,8 @@ model P2PTransaction {
   status        OnRampStatus
   amount        Int
   startTime     DateTime
-  fromUserId    Int
-  toUserId      Int
+  fromUserId    String
+  toUserId      String
   fromuser      User         @relation(name: "fromUserRelation",fields: [fromUserId], references: [id])
   toUser        User         @relation(name: "toUserRelation",fields: [toUserId], references: [id])
 }

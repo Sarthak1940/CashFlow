@@ -27,7 +27,7 @@ export const initiateTransfer = async (amount: number, phoneNumber: string) => {
 
       const balance = await tx.balance.findFirst({
         where: {
-          userId: Number(session.user.id)
+          userId: session.user.id
         }
       });
   
@@ -50,7 +50,7 @@ export const initiateTransfer = async (amount: number, phoneNumber: string) => {
 
       await tx.balance.update({
         where: {
-          userId: Number(session.user.id)
+          userId: session.user.id
         },
         data: {
           amount: {
@@ -61,7 +61,7 @@ export const initiateTransfer = async (amount: number, phoneNumber: string) => {
       
       await tx.p2PTransaction.create({
         data: {
-          fromUserId: Number(session?.user?.id),
+          fromUserId: session?.user?.id,
           status: "Processing",
           amount: amount,
           startTime: new Date(),

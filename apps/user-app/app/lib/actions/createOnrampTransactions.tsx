@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const createOnrampTransactions = async (provider: string, amount: number) => {
   const session = await getServerSession(AUTH_CONFIG);
-  const userId = Number(session?.user?.id)
+  const userId: string = session?.user?.id
 
   if (!userId) {
     return {
@@ -33,7 +33,7 @@ export const createOnrampTransactions = async (provider: string, amount: number)
   }
 }
 
-async function webhookHandler(token: string, userId: number, amount: number) {
+async function webhookHandler(token: string, userId: string, amount: number) {
   try {
     await axios.post(" http://localhost:3003/hdfcWebhook", {
       token: token,
