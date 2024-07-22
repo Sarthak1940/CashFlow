@@ -30,7 +30,7 @@ function AppBar() {
   </div>
 
   <div className="flex justify-center pt-2 gap-4">
-      <Button onClick={() =>{router.push("/api/auth/signin")}} disabled={false} colour="bg-[#7132f5] hover:bg-[#6a51a6]">Sign in</Button>
+      <Button onClick={() =>{router.push("/api/auth/signin")}} disabled={false} colour="text-white bg-[#7132f5] hover:bg-[#6a51a6]">Sign in</Button>
       <Button onClick={() => {router.push("/api/auth/signup")}} disabled={false} colour="bg-white hover:bg-[#fffdd0] text-[#7132f5]">Sign up</Button>
   </div>
 </div>
