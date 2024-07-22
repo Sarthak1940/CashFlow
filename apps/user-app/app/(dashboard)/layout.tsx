@@ -1,9 +1,13 @@
 import { ReactNode } from "react";
 import { SidebarItem } from "../../components/SidebarItem";
+import ProtectedLayout from "../../components/ProtectedRoute";
+
 
 export default function Layout({children}: {children: ReactNode}): JSX.Element {
+
   return (
-    <div className="flex">
+    <ProtectedLayout>
+      <div className="flex">
         <div  className="w-72 border-r border-slate-300 max-h-screen mr-4 pt-28">
           <div>
               <SidebarItem href="/dashboard" title="Home" icon={<HomeIcon/>}/>
@@ -12,8 +16,9 @@ export default function Layout({children}: {children: ReactNode}): JSX.Element {
               <SidebarItem href="/transactions" title="Transactions" icon={<TransactionsIcon/>}/>
           </div>
          </div> 
-      {children}
-  </div>)
+        {children}
+      </div>
+    </ProtectedLayout>)
 }
 
 function HomeIcon() {
