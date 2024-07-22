@@ -11,7 +11,7 @@ export const TransferMoney = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false)
 
-    async function handleMoney(amount: number, phoneNumber:string) {
+    async function handleMoney() {
         try {
             setLoading(true)
             await initiateTransfer(amount * 100, phoneNumber)   
@@ -35,7 +35,7 @@ export const TransferMoney = () => {
       }} />
 
       <div className="flex justify-center pt-4">  
-            <Button onClick={() => {handleMoney(amount, phoneNumber)}} disabled={loading}>
+            <Button onClick={() => {handleMoney}} disabled={loading}>
             Send Money
             </Button>
         </div>
