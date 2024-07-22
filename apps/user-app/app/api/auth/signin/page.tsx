@@ -23,7 +23,7 @@ export default function () {
             setNumber(val)
           }}></TextInput>
 
-          <TextInput label="Password" placeholder="1234567890" onChange={(val) => {
+          <TextInput label="Password" type="password" placeholder="1234567890" onChange={(val) => {
             setPassword(val)
           }}></TextInput>
 

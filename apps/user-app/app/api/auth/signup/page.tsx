@@ -6,8 +6,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { createAccount } from "../../../lib/actions/createAccount";
 
-
-
 export default function () {
   const [email, setEmail] = useState("")
   const [number, setNumber] = useState("")
@@ -43,7 +41,7 @@ export default function () {
             setEmail(val)
           }}></TextInput>
 
-          <TextInput label="Password" placeholder="1234567890" onChange={(val) => {
+          <TextInput label="Password" type="password" placeholder="1234567890" onChange={(val) => {
             setPassword(val)
           }}></TextInput>
 
