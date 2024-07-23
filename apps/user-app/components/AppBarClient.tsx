@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@repo/ui/button"
-import { signOut, useSession } from "next-auth/react"
+import {  useSession } from "next-auth/react"
 import { usePathname, useRouter } from "next/navigation"
 import { List } from "./List"
 import React, { useState } from "react"
