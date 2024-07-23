@@ -8,7 +8,7 @@ export default function Layout({children}: {children: ReactNode}): JSX.Element {
   return (
     <ProtectedLayout>
       <div className="flex">
-        <div  className="w-72 border-r border-slate-300 max-h-screen mr-4 pt-28">
+        <div className="w-72 border-r border-slate-300 max-h-screen mr-4 pt-28 hidden sm:block">
           <div>
               <SidebarItem href="/dashboard" title="Home" icon={<HomeIcon/>}/>
               <SidebarItem href="/deposit" title="Deposit" icon={<DepositIcon/>}/>

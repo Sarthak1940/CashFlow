@@ -30,10 +30,19 @@ export const createAccount = async (number: string, password: string, name: stri
           }
       });
 
+      const balance = await prisma.balance.create({
+        data: {
+          userId: user.id,
+          amount: 0,
+          locked: 0
+        }
+      })
+
       return {
           id: user.id.toString(),
           name: user.name,
-          email: user.number
+          email: user.number,
+          balance: balance.amount
       }
     } catch(e) {
       console.error("error creating account", e);

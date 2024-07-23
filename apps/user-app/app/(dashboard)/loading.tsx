@@ -9,7 +9,7 @@ export default function Loading() {
   </div>
 }
 
-function Skeleton() {
+export function Skeleton() {
   return <div role="status" className="max-w-sm animate-pulse">
   <div className="h-2.5 bg-gray-300 rounded-full w-48 mb-4"></div>
   <div className="h-2 bg-gray-300 rounded-full min-w-[360px] mb-2.5"></div>

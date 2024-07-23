@@ -4,6 +4,7 @@ import { Card } from "@repo/ui/card"
 import { TextInput } from "@repo/ui/textinput"
 import { signIn } from "next-auth/react"
 import Image from "next/image"
+import { redirect } from "next/navigation"
 import { useState } from "react"
 
 export default function () {
@@ -11,12 +12,12 @@ export default function () {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
-  return <div className="flex gap-20 justify-center mt-12 px-40">
-    <div>
-      <Image src="/signup-image.webp" alt="" width={400} height={400}></Image>
+  return <div className="flex gap-20 justify-center mx-auto mt-12 w-[60%]">
+    <div className="hidden lg:block">
+      <Image src="/signup-image.webp" alt="" width={600} height={600}></Image>
     </div>
 
-    <div className="w-[60%]">
+    <div className="w-full">
       <Card title="Enter your Details" className="max-h-fit">
         <div>
           <TextInput label="Phone Number" placeholder="1234567890" onChange={(val) => {
@@ -47,6 +48,7 @@ export default function () {
               setLoading(true)
               await signIn("google")
               setLoading(false)
+              redirect("/dashboard")
             }}>
                 <Image src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo" width={24} height={24}/>
                 Login with Google

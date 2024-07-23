@@ -39,7 +39,7 @@ export default async function () {
     const recievedTransactions = transactions.filter(t => t.transfer === "recieve")
     
   return <div className="w-screen">
-  <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
+  <div className="text-4xl text-[#6a51a6] pt-8 px-6 mb-8 font-bold">
       P2P Transactions
   </div>
   <div className="gap-4 p-4">

@@ -5,6 +5,7 @@ import { TextInput } from "@repo/ui/textinput";
 import Image from "next/image";
 import { useState } from "react";
 import { createAccount } from "../../../lib/actions/createAccount";
+import { redirect } from "next/navigation";
 
 export default function () {
   const [email, setEmail] = useState("")
@@ -13,23 +14,13 @@ export default function () {
   const [name, setName] = useState("")
   const [loading, setLoading] = useState(false)
 
-  async function handleAccount() {
-    try {
-      setLoading(true)
-      await createAccount(number, password, name, email)
-      setLoading(false)
-    } catch (error) {
-      console.log("Error creating account", error);
-      
-    }
-  }
-  return <div className="flex gap-20 justify-center mt-12">
-    <div>
+  return <div className="flex gap-20 justify-center items-center mx-auto mt-12 w-[70%]">
+    <div className="hidden lg:block">
       <Image src="/signup-image.webp" alt="" width={400} height={400}></Image>
     </div>
 
     <div>
-      <p className="text-[3rem] leading-[3.2rem] mb-5 font-sans">Create your personal account</p>
+      <p className="text-[2rem] sm:[2.5rem] md:text-[2.5rem] leading-[100%] -tracking-[0.1rem] mb-5 font-sans">Create your personal account</p>
 
       <Card title="Enter your Details" className="max-h-fit">
         <div>
@@ -50,7 +41,12 @@ export default function () {
           }}></TextInput>
 
           <div className="flex justify-center pt-4">
-            <Button onClick={() => {handleAccount}} disabled={loading} colour="bg-[#855bfb29] text-[#7132f5]">
+            <Button onClick={async () => {
+              setLoading(true)
+              await createAccount(number, password, name, email)
+              setLoading(false)
+              redirect("/dashboard")
+            }} disabled={loading} colour="bg-[#855bfb29] text-[#7132f5]">
             Create Account
             </Button>
           </div>

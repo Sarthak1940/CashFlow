@@ -50,7 +50,7 @@ export const AddMoney = () => {
             value: x.name
         }))} />
         <div className="flex justify-center pt-4">
-            <Button onClick={async () => handleMoney(redirectUrl, provider, amount)} disabled={loading}>
+            <Button onClick={async () => handleMoney(redirectUrl, provider, amount)} disabled={loading} colour="bg-[#855bfb29] text-[#7132f5]">
             Add Money
             </Button>
         </div>

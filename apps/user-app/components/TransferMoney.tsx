@@ -35,7 +35,7 @@ export const TransferMoney = () => {
       }} />
 
       <div className="flex justify-center pt-4">  
-            <Button onClick={() => {handleMoney}} disabled={loading}>
+            <Button onClick={() => {handleMoney}} disabled={loading} colour="bg-[#855bfb29] text-[#7132f5]">
             Send Money
             </Button>
         </div>

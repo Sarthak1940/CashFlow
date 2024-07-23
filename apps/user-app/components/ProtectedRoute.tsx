@@ -2,6 +2,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
+import { Skeleton } from '../app/(dashboard)/loading';
 
 const ProtectedLayout = ({ children }: {children: React.ReactNode}) => {
   const { data: session, status } = useSession();
@@ -13,7 +14,13 @@ const ProtectedLayout = ({ children }: {children: React.ReactNode}) => {
   }, [session, status, router]);
 
   if (status === 'loading' || !session) {
-    return <p>Loading...</p>; // Render a loading state or spinner
+    return <div>
+    <Skeleton/>
+    <br/>
+    <Skeleton/>
+    <Skeleton/>
+    <Skeleton/>
+  </div> 
   }
 
   return <>{children}</>;
