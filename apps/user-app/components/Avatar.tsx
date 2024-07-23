@@ -50,13 +50,13 @@ export const Avatar = () => {
         </li>
       </ul>
       <div className="py-1 border-t">
-        <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" 
         onClick={async () => {
           await signOut()
           router.push("/api/auth/signin")
           }}>
           Sign out
-        </button>
+        </div>
       </div>
   </div>
 </div> 
